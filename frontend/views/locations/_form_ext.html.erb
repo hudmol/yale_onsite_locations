@@ -1,0 +1,6 @@
+<%= form.label_and_boolean 'onsite', {} %>
+<script>
+  var $onsiteCheckbox = $('#location_onsite_').closest('.form-group');
+  var $targetField = $('#location_area_').closest('.form-group');
+  $targetField.after($onsiteCheckbox);
+</script>
