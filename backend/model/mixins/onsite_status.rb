@@ -5,7 +5,7 @@ module OnsiteStatus
   end
 
   module ClassMethods
-    def calculate_online_status(objs)
+    def calculate_onsite_status(objs)
       result = {}
 
       if self == Resource
@@ -79,7 +79,7 @@ module OnsiteStatus
     def sequel_to_jsonmodel(objs, opts = {})
       jsons = super
 
-      onsite_status_map = calculate_online_status(objs)
+      onsite_status_map = calculate_onsite_status(objs)
 
       objs.zip(jsons).each do |obj, json|
         json['onsite_status'] = onsite_status_map.fetch(obj.id, 'onsite')
