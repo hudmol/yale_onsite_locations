@@ -1,0 +1,9 @@
+en:
+  search_results:
+    filter:
+      onsite_status_u_sstr: Onsite
+  yale_onsite_locations:
+    onsite_status_u_sstr:
+      onsite: Onsite
+      offsite: Offsite
+      mixed: Mixed
