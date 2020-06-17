@@ -2,7 +2,7 @@ Yale Onsite Location
 -----------------------------------
 
 This is an ArchivesSpace plugin that introduces Onsite and Offsite locations
- via new flag on the Location model and exposes this as new filter and
+ via new flag on the Location model and exposes this as a new filter and
  container details in the PUI.
 
 This plugin was developed by Hudson Molonglo for Yale University.
