@@ -29,4 +29,34 @@ Rails.application.config.after_initialize do
       display_string
     end
   end
+
+  ResourcesController.class_eval do
+    alias_method :fetch_containers_pre_yale_onsite_locations, :fetch_containers
+    def fetch_containers(resource_uri, page_uri, params)
+      result = fetch_containers_pre_yale_onsite_locations(resource_uri, page_uri, params)
+
+      @results.records.each do |record|
+        if record.json['indicator'] && record.json['onsite_status']
+          record.json['indicator'] += " — #{I18n.t("yale_onsite_locations.onsite_status_u_sstr.#{record.json['onsite_status']}", :default => record.json['onsite_status'])}"
+        end
+      end
+
+      result
+    end
+  end
+
+  ContainersController.class_eval do
+    alias_method :show_pre_yale_onsite_locations, :show
+    def show
+      result = show_pre_yale_onsite_locations
+
+      if @result
+        if @result.json['indicator'] && @result.json['onsite_status']
+          @result.json['indicator'] += " — #{I18n.t("yale_onsite_locations.onsite_status_u_sstr.#{@result.json['onsite_status']}", :default => @result.json['onsite_status'])}"
+        end
+      end
+
+      result
+    end
+  end
 end
